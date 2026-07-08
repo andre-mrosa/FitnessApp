@@ -1,0 +1,19 @@
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace API.Entities
+{
+    [Table("ExerciseImages")]
+    public class ExerciseImageEntity
+    {
+        [Required]
+        public byte[] Data { get; set; } = Array.Empty<byte>();
+
+        [Required]
+        public string MimeType { get; set; } = "image/jpeg"; // Ex: image/jpeg, image/png
+
+        // Foreign Key de volta para o exercício
+        public Guid ExerciseId { get; set; }
+        public ExerciseEntity Exercise { get; set; }
+    }
+}

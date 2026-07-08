@@ -1,0 +1,10 @@
+<Solution>
+  <Project Path="API/API.csproj" />
+  <Project Path="Core/Core.csproj" />
+  <Project Path="Mobile/Mobile.csproj">
+    <Deploy Solution="Debug|*" />
+  </Project>
+  <Project Path="PersonalTrainerApp/PersonalTrainerApp.csproj" />
+  <Project Path="Shared/Shared.csproj" />
+  <Project Path="Web/Web.csproj" />
+</Solution>
