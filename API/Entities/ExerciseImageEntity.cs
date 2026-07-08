@@ -7,7 +7,7 @@ namespace API.Entities
     public class ExerciseImageEntity
     {
         [Required]
-        public byte[] Data { get; set; } = Array.Empty<byte>();
+        public byte[] Data { get; set; } = [];
 
         [Required]
         public string MimeType { get; set; } = "image/jpeg"; // Ex: image/jpeg, image/png
