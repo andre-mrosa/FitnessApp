@@ -14,6 +14,6 @@ namespace API.Entities
 
         // Foreign Key de volta para o exercício
         public Guid ExerciseId { get; set; }
-        public ExerciseEntity Exercise { get; set; }
+        public required ExerciseEntity Exercise { get; set; }
     }
 }
