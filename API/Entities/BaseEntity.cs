@@ -2,10 +2,10 @@
 
 namespace API.Entities
 {
-    public class EntityBase
+    public class BaseEntity
     {
         [Key]
-        public Guid Id { get; set; }
+        public Guid Id { get; set; } = Guid.CreateVersion7();
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 

@@ -1,0 +1,40 @@
+﻿@page "/athletes"
+@inject HttpClient Http
+@using System.Net.Http.Json
+@using Shared.DTOs
+
+<PageTitle>Athletes List</PageTitle>
+
+@if (mensagemErro != null)
+{
+    <div class="alert alert-danger">@mensagemErro</div>
+}
+else if (athletesList == null)
+{
+    <p><em>A carregar atletas da API...</em></p>
+}
+else if (!athletesList.Any())
+{
+    <div class="alert alert-info">Não existem atletas registados.</div>
+}
+else
+{
+}
+
+@code {
+    private List<AthleteDTO>? athletesList;
+    private string? mensagemErro;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            athletesList = await Http.GetFromJsonAsync<List<AthleteDTO>>("api/athlete");
+        }
+        catch (Exception ex)
+        {
+            mensagemErro = $"Não foi possível carregar os dados: {ex.Message}";
+            Console.WriteLine(ex);
+        }
+    }
+}

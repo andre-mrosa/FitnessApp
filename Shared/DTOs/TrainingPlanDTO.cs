@@ -2,7 +2,6 @@
 {
     public class TrainingPlanDTO
     {
-        public Guid Id { get; set; }
         public required string Title { get; set; }
         public List<ExerciseDTO> ExerciseDTOs { get; set; } = [];
         public string Description { get; set; } = string.Empty;

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace API.Entities
 {
     [Table("ExercisePlans")]
-    public class ExercisePlanEntity : EntityBase
+    public class ExercisePlanEntity : BaseEntity
     {
         [Required]
         public Guid ExerciseId { get; set; }

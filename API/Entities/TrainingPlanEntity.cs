@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace API.Entities
 {
     [Table("TrainingPlans")]
-    public class TrainingPlanEntity : EntityBase
+    public class TrainingPlanEntity : BaseEntity
     {
         [Required]
         [MaxLength(100)]

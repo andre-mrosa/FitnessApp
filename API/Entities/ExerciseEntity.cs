@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace API.Entities
 {
     [Table("Exercises")]
-    public class ExerciseEntity : EntityBase
+    public class ExerciseEntity : BaseEntity
     {
 
         [Required]

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace API.Entities
 {
     [Table("ExerciseImages")]
-    public class ExerciseImageEntity
+    public class ExerciseImageEntity : BaseEntity
     {
         [Required]
         public byte[] Data { get; set; } = [];
