@@ -1,6 +1,7 @@
 ﻿using API.Data;
 using API.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
 {
@@ -16,6 +17,13 @@ namespace API.Controllers
             _context.Exercises.Add(entity);
             await _context.SaveChangesAsync();
             return Ok(entity);
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<List<ExerciseEntity>>> GetAll()
+        {
+            var exercises = await _context.Exercises.ToListAsync();
+            return Ok(exercises);
         }
     }
 }
