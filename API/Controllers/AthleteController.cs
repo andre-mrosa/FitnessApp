@@ -1,5 +1,5 @@
 ﻿using API.Data;
-using API.Entities;
+using API.Entities.Users;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Shared.DTOs;
@@ -7,7 +7,7 @@ using Shared.DTOs;
 namespace API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/athletes")]
     public class AthleteController(AppDbContext context) : ControllerBase
     {
         private readonly AppDbContext _context = context;

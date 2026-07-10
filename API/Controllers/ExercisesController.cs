@@ -7,7 +7,7 @@ using Shared.DTOs;
 namespace API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/exercises")]
     public class ExercisesController(AppDbContext context) : ControllerBase
     {
         private readonly AppDbContext _context = context;

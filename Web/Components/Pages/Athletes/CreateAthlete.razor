@@ -1,0 +1,88 @@
+﻿@page "/athletes/create"
+@inject HttpClient Http
+@inject NavigationManager Navigation
+@using Shared.DTOs
+
+<h3>Create a new Athlete</h3>
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <div class="alert alert-danger">@errorMessage</div>
+}
+
+@if (showSuccess)
+{
+    <div class="alert alert-success">Atleta criado com sucesso!</div>
+}
+
+<EditForm Model="@athlete" OnValidSubmit="HandleValidSubmit" FormName="createAthleteForm">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label for="name" class="form-label">Nome do Atleta</label>
+        <InputText id="name" class="form-control" @bind-Value="athlete.Name" placeholder="Introduz o nome completo" />
+    </div>
+
+    <div class="mb-3">
+        <label for="birthDate" class="form-label">Data de Nascimento</label>
+        <InputDate id="birthDate" class="form-control" @bind-Value="athlete.BirthDate" min="@minDate" max="@maxDate" />
+    </div>
+
+    <button type="submit" class="btn btn-primary" disabled="@isSubmitting">
+        @(isSubmitting ? "A criar..." : "Guardar Atleta")
+    </button>
+</EditForm>
+
+@code {
+    [SupplyParameterFromForm]
+    private AthleteCreateDTO athlete { get; set; } = new AthleteCreateDTO
+    {
+        Name = string.Empty,
+        BirthDate = DateTime.Today.AddYears(-20)
+    };
+
+    private string minDate = DateTime.Today.AddYears(-120).ToString("yyyy-MM-dd");
+    private string maxDate = DateTime.Today.ToString("yyyy-MM-dd");
+
+    private bool isSubmitting = false;
+    private bool showSuccess = false;
+    private string? errorMessage;
+
+    private async Task HandleValidSubmit()
+    {
+        isSubmitting = true;
+        errorMessage = null;
+        showSuccess = false;
+
+        try
+        {
+            if (string.IsNullOrWhiteSpace(athlete?.Name))
+            {
+                errorMessage = "O nome do atleta é obrigatório.";
+                return;
+            }
+
+            var response = await Http.PostAsJsonAsync("api/athletes", athlete);
+
+            if (response.IsSuccessStatusCode)
+            {
+                showSuccess = true;
+                athlete = new AthleteCreateDTO { Name = string.Empty };
+            }
+            else
+            {
+                string error = await response.Content.ReadAsStringAsync();
+                errorMessage = $"Ocorreu um erro ao guardar: {response.StatusCode} - {error}";
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Erro de ligação à API: {ex.Message}";
+        }
+        finally
+        {
+            isSubmitting = false;
+        }
+    }
+}

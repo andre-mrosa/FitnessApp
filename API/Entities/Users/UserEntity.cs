@@ -1,13 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace API.Entities
+namespace API.Entities.Users
 {
-    public class PersonBaseEntity : BaseEntity
+    public class UserBaseEntity : BaseEntity
     {
         [MaxLength(100)]
         public required string Name { get; set; }
 
-        public DateOnly BirthDate { get; set; }
+        public DateTime BirthDate { get; set; }
 
         public string? Photo { get; set; }
     }
