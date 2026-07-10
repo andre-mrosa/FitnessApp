@@ -1,6 +1,6 @@
 ﻿namespace API.Entities.Users
 {
-    public class AthleteEntity : UserBaseEntity
+    public class AthleteEntity : UserEntity
     {
     }
 }

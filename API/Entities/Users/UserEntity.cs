@@ -2,7 +2,7 @@
 
 namespace API.Entities.Users
 {
-    public class UserBaseEntity : BaseEntity
+    public class UserEntity : BaseEntity
     {
         [MaxLength(100)]
         public required string Name { get; set; }
